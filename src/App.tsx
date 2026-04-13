@@ -16,7 +16,8 @@ import {
   ChevronDown,
   BookOpen,
   Users,
-  AlertCircle
+  AlertCircle,
+  ListChecks
 } from "lucide-react";
 import React, { useState, useEffect, useRef } from "react";
 
@@ -27,6 +28,7 @@ export default function App() {
   // Refs for scrolling
   const homeRef = useRef<HTMLDivElement>(null);
   const eventRef = useRef<HTMLDivElement>(null);
+  const rundownRef = useRef<HTMLDivElement>(null);
   const graduatesRef = useRef<HTMLDivElement>(null);
   const rsvpRef = useRef<HTMLDivElement>(null);
   const infaqRef = useRef<HTMLDivElement>(null);
@@ -43,6 +45,8 @@ export default function App() {
         setActiveTab("rsvp");
       } else if (graduatesRef.current && scrollPos >= graduatesRef.current.offsetTop) {
         setActiveTab("graduates");
+      } else if (rundownRef.current && scrollPos >= rundownRef.current.offsetTop) {
+        setActiveTab("rundown");
       } else if (eventRef.current && scrollPos >= eventRef.current.offsetTop) {
         setActiveTab("event");
       } else {
@@ -190,6 +194,66 @@ export default function App() {
             </div>
           </div>
         </motion.div>
+      </section>
+
+      {/* Rundown Section */}
+      <section 
+        ref={rundownRef}
+        className="relative py-20 px-6 z-10"
+      >
+        <div className="max-w-3xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="glass-card rounded-3xl p-6 md:p-10 shadow-2xl border border-gold/20"
+          >
+            <div className="text-center mb-10">
+              <ListChecks className="w-12 h-12 text-gold mx-auto mb-4" />
+              <h3 className="font-serif text-3xl font-bold mb-2">Susunan Acara</h3>
+              <p className="text-gold/80 italic">Rundown Wisuda Tahfidz</p>
+            </div>
+
+            <div className="overflow-x-auto">
+              <table className="w-full text-left border-collapse">
+                <thead>
+                  <tr className="border-b border-gold/30">
+                    <th className="py-4 px-4 text-gold font-bold uppercase tracking-wider text-xs w-12">NO</th>
+                    <th className="py-4 px-4 text-gold font-bold uppercase tracking-wider text-xs w-32">WAKTU</th>
+                    <th className="py-4 px-4 text-gold font-bold uppercase tracking-wider text-xs">ACARA</th>
+                    <th className="py-4 px-4 text-gold font-bold uppercase tracking-wider text-xs">KETERANGAN</th>
+                  </tr>
+                </thead>
+                <tbody className="text-emerald-50">
+                  {[
+                    { no: 1, time: "07:00–08:00", event: "Registrasi Peserta dan Tamu Undangan", note: "Sie. Humas dan Sie. Tamu" },
+                    { no: 2, time: "08:00–08:10", event: "Pembukaan", note: "MC" },
+                    { no: 3, time: "08:10–08:20", event: "Pembacaan ayat suci Al-Quran", note: "Pajri Maulana, M.Pd" },
+                    { no: 4, time: "08:20–08:25", event: "Pembacaan SK", note: "Dudi Ahmad Syaekhu, M.M.Pd" },
+                    { no: 5, time: "08:25–10:30", event: "Prosesi Wisuda", note: "Sie. Acara" },
+                    { no: 6, time: "10:30–11:00", event: "Sambutan-sambutan", note: (
+                      <ul className="list-decimal list-inside space-y-1 text-xs">
+                        <li>E. Anwar Sanusi, S.Ag (Kepala Madrasah)</li>
+                        <li>KH. Drs. T. Musthafa KF (Ketua Komite)</li>
+                        <li>KH. Dr. Aam Abdussalam, M.Pd (Ketua Yayasan)</li>
+                        <li>Dr. Asep Bahria, M.Pd (Kepala Kemenag)</li>
+                      </ul>
+                    )},
+                    { no: 7, time: "11:00–11:10", event: "Do’a", note: "H. Mamat Rahmatilah" },
+                    { no: 8, time: "Selesai", event: "Tutup", note: "MC" },
+                  ].map((item, index) => (
+                    <tr key={index} className="border-b border-gold/10 hover:bg-gold/5 transition-colors">
+                      <td className="py-4 px-4 text-sm font-mono text-gold/70">{item.no}</td>
+                      <td className="py-4 px-4 text-sm font-medium text-emerald-100">{item.time}</td>
+                      <td className="py-4 px-4 text-sm font-bold">{item.event}</td>
+                      <td className="py-4 px-4 text-xs text-emerald-100/70">{item.note}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </motion.div>
+        </div>
       </section>
 
       {/* Graduates List Section */}
@@ -364,6 +428,12 @@ export default function App() {
             label="Lokasi" 
             active={activeTab === "event"} 
             onClick={() => scrollTo(eventRef, "event")} 
+          />
+          <NavButton 
+            icon={<ListChecks className="w-4 h-4" />} 
+            label="Acara" 
+            active={activeTab === "rundown"} 
+            onClick={() => scrollTo(rundownRef, "rundown")} 
           />
           <NavButton 
             icon={<Users className="w-4 h-4" />} 
