@@ -14,7 +14,9 @@ import {
   MessageCircle, 
   Info,
   ChevronDown,
-  BookOpen
+  BookOpen,
+  Users,
+  AlertCircle
 } from "lucide-react";
 import React, { useState, useEffect, useRef } from "react";
 
@@ -25,6 +27,7 @@ export default function App() {
   // Refs for scrolling
   const homeRef = useRef<HTMLDivElement>(null);
   const eventRef = useRef<HTMLDivElement>(null);
+  const graduatesRef = useRef<HTMLDivElement>(null);
   const rsvpRef = useRef<HTMLDivElement>(null);
   const infaqRef = useRef<HTMLDivElement>(null);
 
@@ -38,6 +41,8 @@ export default function App() {
         setActiveTab("infaq");
       } else if (rsvpRef.current && scrollPos >= rsvpRef.current.offsetTop) {
         setActiveTab("rsvp");
+      } else if (graduatesRef.current && scrollPos >= graduatesRef.current.offsetTop) {
+        setActiveTab("graduates");
       } else if (eventRef.current && scrollPos >= eventRef.current.offsetTop) {
         setActiveTab("event");
       } else {
@@ -187,6 +192,61 @@ export default function App() {
         </motion.div>
       </section>
 
+      {/* Graduates List Section */}
+      <section 
+        ref={graduatesRef}
+        className="relative py-20 px-6 z-10"
+      >
+        <div className="max-w-2xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="glass-card rounded-3xl p-6 md:p-10 shadow-2xl border border-gold/20"
+          >
+            <div className="text-center mb-10">
+              <Users className="w-12 h-12 text-gold mx-auto mb-4" />
+              <h3 className="font-serif text-3xl font-bold mb-2">Daftar Wisudawan</h3>
+              <p className="text-gold/80 italic">Calon Wisudawan & Wisudawati Tahfidz</p>
+            </div>
+
+            <div className="overflow-x-auto">
+              <table className="w-full text-left border-collapse">
+                <thead>
+                  <tr className="border-b border-gold/30">
+                    <th className="py-4 px-4 text-gold font-bold uppercase tracking-wider text-xs w-16">NO</th>
+                    <th className="py-4 px-4 text-gold font-bold uppercase tracking-wider text-xs">NAMA</th>
+                  </tr>
+                </thead>
+                <tbody className="text-emerald-50">
+                  {[
+                    "ABDURAHMAN ALI MUZAKKI", "ALI SYARIATI PERMANA", "ALWAWI ZATNIKA", "ARDA ROUDATUL JANNAH",
+                    "ASHRI AZIZATUL ADAWIYAH", "AZMIRA DWIFA AZZAIDY", "DINDA SALMA SALSABILA", "FAHIRA ANINDIA",
+                    "FEBRIAN JALIL HALIM ADIN PUTRA", "HASYA AULIANI FITRIYAH", "HIMMAH NURUL AZMI", "HUSNA HANIFAH MUSAWA",
+                    "INTAN NUR'AINI", "KHOLIK HAKIKI", "KIRANA AZZAHRA IMANIAR", "M MASDAR FAUZAN", "MAZIYA NADWAH FUAD",
+                    "MOHAMAD NIZAM IBRAHIM", "MUHAMAD RIFKI MAULANA PUTRA", "MUHAMMAD ADI FIRMANSYAH",
+                    "MUHAMMAD FAEYZA FAYYADH HADDAYA", "MUHAMMAD FATHIR RAMADHAN", "MUHAMMAD KEANU ROFFIQ",
+                    "MUHAMMAD RAIHAN NABAWI", "MUMTAAZ AZKA KHIYARI", "NASYWAN FAIZ RAHMAT", "NAUFAL AFKAR IDLAN",
+                    "NAYLA SRI ANJANI", "NAYSHILA ALYA FITRI", "NIDAAN KHOFIYYA GUNAWAN", "QYRANNI AZ ZAHRA",
+                    "RAI BANI ALFIAN", "RAISHA NAHLATUL FATIHAH", "RASIKAH NUR FAUZIYAH", "REZA RISTIAWAN",
+                    "RIPANDI YUDISTIRA", "SAGARA CIKAL SUNDANIS", "SALSABILA KHOIRUNNISA", "SALWA FITRI AWALIYAH",
+                    "SASKIA BILQIS ZILVANA", "SASKIA HANIFATUN NIDA", "SELLA AVARIELLA RAMADYANI",
+                    "SELLI SHAKILA RAMADYANI", "SILFIYA AGUS SALIM", "SITI ROBIAH ADAWIAH", "ULFA SOLIHATUN NISSA",
+                    "YUSUF APRIZAL ZAKI", "ZAENAL MUBAROK", "ZAHWA ADELIA PUTRI", "ZHAFARA AZALEA KHOIRUNNISA",
+                    "ZULFA NUR RAHMA MAULIDA", "ZULFAN ABDUL FATAH"
+                  ].map((name, index) => (
+                    <tr key={index} className="border-b border-gold/10 hover:bg-gold/5 transition-colors">
+                      <td className="py-3 px-4 text-sm font-mono text-gold/70">{index + 1}</td>
+                      <td className="py-3 px-4 text-sm font-medium tracking-wide">{name}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* RSVP Section */}
       <section 
         ref={rsvpRef}
@@ -201,9 +261,16 @@ export default function App() {
           >
             <Send className="w-12 h-12 text-gold mx-auto mb-6" />
             <h3 className="font-serif text-3xl font-bold mb-4">Konfirmasi Kehadiran</h3>
-            <p className="text-emerald-100/80 mb-8 leading-relaxed">
+            <p className="text-emerald-100/80 mb-6 leading-relaxed">
               Mohon konfirmasikan kehadiran Bapak/Ibu Orang Tua/Wali melalui tautan di bawah ini untuk membantu kami dalam persiapan acara.
             </p>
+            
+            <div className="flex items-center justify-center gap-3 p-4 bg-emerald-900/40 rounded-2xl border border-gold/30 mb-8 max-w-sm mx-auto">
+              <AlertCircle className="w-5 h-5 text-gold shrink-0" />
+              <p className="text-xs text-emerald-50 font-medium text-left">
+                Jumlah pendamping wisudawan/wisudawati yang boleh masuk ke ruangan <span className="text-gold font-bold">hanya 2 orang</span>.
+              </p>
+            </div>
             <a 
               href="https://forms.gle/QT1N1GK82mRkM5n19" 
               target="_blank" 
@@ -287,25 +354,31 @@ export default function App() {
       >
         <div className="bg-emerald-950/90 backdrop-blur-2xl border border-gold/40 rounded-full p-2 flex items-center justify-around shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
           <NavButton 
-            icon={<BookOpen className="w-5 h-5" />} 
+            icon={<BookOpen className="w-4 h-4" />} 
             label="Wisuda" 
             active={activeTab === "home"} 
             onClick={() => scrollTo(homeRef, "home")} 
           />
           <NavButton 
-            icon={<MapPin className="w-5 h-5" />} 
+            icon={<MapPin className="w-4 h-4" />} 
             label="Lokasi" 
             active={activeTab === "event"} 
             onClick={() => scrollTo(eventRef, "event")} 
           />
           <NavButton 
-            icon={<Send className="w-5 h-5" />} 
+            icon={<Users className="w-4 h-4" />} 
+            label="Daftar" 
+            active={activeTab === "graduates"} 
+            onClick={() => scrollTo(graduatesRef, "graduates")} 
+          />
+          <NavButton 
+            icon={<Send className="w-4 h-4" />} 
             label="Hadir" 
             active={activeTab === "rsvp"} 
             onClick={() => scrollTo(rsvpRef, "rsvp")} 
           />
           <NavButton 
-            icon={<Wallet className="w-5 h-5" />} 
+            icon={<Wallet className="w-4 h-4" />} 
             label="Infaq" 
             active={activeTab === "infaq"} 
             onClick={() => scrollTo(infaqRef, "infaq")} 
