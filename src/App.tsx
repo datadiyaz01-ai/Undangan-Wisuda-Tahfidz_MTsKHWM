@@ -236,7 +236,7 @@ export default function App() {
                         <li>E. Anwar Sanusi, S.Ag (Kepala Madrasah)</li>
                         <li>KH. Drs. T. Musthafa KF (Ketua Komite)</li>
                         <li>KH. Dr. Aam Abdussalam, M.Pd (Ketua Yayasan)</li>
-                        <li>Dr. Asep Bahria, M.Pd (Kepala Kemenag)</li>
+                        <li>Drs. H. Ahmad Patoni, M.M (Kepala Kemenag)</li>
                       </ul>
                     )},
                     { no: 7, time: "11:00–11:10", event: "Do’a", note: "H. Mamat Rahmatilah" },
@@ -261,7 +261,7 @@ export default function App() {
         ref={graduatesRef}
         className="relative py-20 px-6 z-10"
       >
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -275,33 +275,75 @@ export default function App() {
             </div>
 
             <div className="overflow-x-auto">
-              <table className="w-full text-left border-collapse">
+              <table className="w-full text-left border-collapse min-w-[600px]">
                 <thead>
                   <tr className="border-b border-gold/30">
-                    <th className="py-4 px-4 text-gold font-bold uppercase tracking-wider text-xs w-16">NO</th>
-                    <th className="py-4 px-4 text-gold font-bold uppercase tracking-wider text-xs">NAMA</th>
+                    <th className="py-4 px-4 text-gold font-bold uppercase tracking-wider text-[10px] w-12">NO</th>
+                    <th className="py-4 px-4 text-gold font-bold uppercase tracking-wider text-[10px]">NAMA</th>
+                    <th className="py-4 px-4 text-gold font-bold uppercase tracking-wider text-[10px]">ORANG TUA</th>
+                    <th className="py-4 px-4 text-gold font-bold uppercase tracking-wider text-[10px]">KATEGORI</th>
                   </tr>
                 </thead>
                 <tbody className="text-emerald-50">
                   {[
-                    "ABDURAHMAN ALI MUZAKKI", "ALI SYARIATI PERMANA", "ALWAWI ZATNIKA", "ARDA ROUDATUL JANNAH",
-                    "ASHRI AZIZATUL ADAWIYAH", "AZMIRA DWIFA AZZAIDY", "DINDA SALMA SALSABILA", "FAHIRA ANINDIA",
-                    "FEBRIAN JALIL HALIM ADIN PUTRA", "HASYA AULIANI FITRIYAH", "HIMMAH NURUL AZMI", "HUSNA HANIFAH MUSAWA",
-                    "INTAN NUR'AINI", "KHOLIK HAKIKI", "KIRANA AZZAHRA IMANIAR", "M MASDAR FAUZAN", "MAZIYA NADWAH FUAD",
-                    "MOHAMAD NIZAM IBRAHIM", "MUHAMAD RIFKI MAULANA PUTRA", "MUHAMMAD ADI FIRMANSYAH",
-                    "MUHAMMAD FAEYZA FAYYADH HADDAYA", "MUHAMMAD FATHIR RAMADHAN", "MUHAMMAD KEANU ROFFIQ",
-                    "MUHAMMAD RAIHAN NABAWI", "MUMTAAZ AZKA KHIYARI", "NASYWAN FAIZ RAHMAT", "NAUFAL AFKAR IDLAN",
-                    "NAYLA SRI ANJANI", "NAYSHILA ALYA FITRI", "NIDAAN KHOFIYYA GUNAWAN", "QYRANNI AZ ZAHRA",
-                    "RAI BANI ALFIAN", "RAISHA NAHLATUL FATIHAH", "RASIKAH NUR FAUZIYAH", "REZA RISTIAWAN",
-                    "RIPANDI YUDISTIRA", "SAGARA CIKAL SUNDANIS", "SALSABILA KHOIRUNNISA", "SALWA FITRI AWALIYAH",
-                    "SASKIA BILQIS ZILVANA", "SASKIA HANIFATUN NIDA", "SELLA AVARIELLA RAMADYANI",
-                    "SELLI SHAKILA RAMADYANI", "SILFIYA AGUS SALIM", "SITI ROBIAH ADAWIAH", "ULFA SOLIHATUN NISSA",
-                    "YUSUF APRIZAL ZAKI", "ZAENAL MUBAROK", "ZAHWA ADELIA PUTRI", "ZHAFARA AZALEA KHOIRUNNISA",
-                    "ZULFA NUR RAHMA MAULIDA", "ZULFAN ABDUL FATAH"
-                  ].map((name, index) => (
+                    { name: "ABDURAHMAN ALI MUZAKKI", parent: "Ali Sodikin", category: "1 Juz (juz 1)" },
+                    { name: "ALI SYARIATI PERMANA", parent: "Osin Permana", category: "3 Juz (juz 30, 29, 1)" },
+                    { name: "ALWAWI ZATNIKA", parent: "Riki", category: "1 Juz (juz 30)" },
+                    { name: "ARDA ROUDATUL JANNAH", parent: "Dasuki", category: "1 Juz (juz 30)" },
+                    { name: "ASHRI AZIZATUL ADAWIYAH", parent: "Diki Baihaki", category: "1 Juz (juz 30)" },
+                    { name: "AZMIRA DWIFA AZZAIDY", parent: "Junaedi", category: "1 Juz (juz 30)" },
+                    { name: "DINDA SALMA SALSABILA", parent: "Sandi", category: "1 Juz (juz 27)" },
+                    { name: "FAHIRA ANINDIA", parent: "Dede Deni", category: "1 Juz (juz 29)" },
+                    { name: "FEBRIAN JALIL HALIM ADIN PUTRA", parent: "AEP SARIPUDIN", category: "1 Juz (juz 30)" },
+                    { name: "HASYA AULIANI FITRIYAH", parent: "Irfan saepul Ridwan", category: "1 Juz (juz 30)" },
+                    { name: "HIMMAH NURUL AZMI", parent: "IMAN NURJAMAN, S.Pd.I", category: "1 Juz (juz 30)" },
+                    { name: "HUSNA HANIFAH MUSAWA", parent: "Andri Mulya Musawa", category: "1 Juz (juz 27)" },
+                    { name: "INTAN NUR'AINI", parent: "Gustiawan", category: "1 Juz (juz 30)" },
+                    { name: "KHOLIK HAKIKI", parent: "Dadang Sahidin", category: "1 Juz (juz 30)" },
+                    { name: "KIRANA AZZAHRA IMANIAR", parent: "Saliman", category: "1 Juz (juz 30)" },
+                    { name: "M MASDAR FAUZAN", parent: "IMAN NURJAMAN, S.Pd.I", category: "1 Juz (juz 1)" },
+                    { name: "MAZIYA NADWAH FUAD", parent: "Fuad Muslihat", category: "1 Juz (juz 29)" },
+                    { name: "MOHAMAD NIZAM IBRAHIM", parent: "Eko Cahyono", category: "1 Juz (juz 30)" },
+                    { name: "MUHAMAD RIFKI MAULANA PUTRA", parent: "Sopian Handayana", category: "1 Juz (juz 30)" },
+                    { name: "MUHAMMAD ADI FIRMANSYAH", parent: "Dede Najriel", category: "1 Juz (juz 30)" },
+                    { name: "MUHAMMAD FAEYZA FAYYADH HADDAYA", parent: "Yunan Helmi", category: "1 Juz (juz 30)" },
+                    { name: "MUHAMMAD FATHIR RAMADHAN", parent: "Zaenal Muttaqin", category: "1 Juz (juz 29)" },
+                    { name: "MUHAMMAD KEANU ROFFIQ", parent: "Taufik Abdul Roffiq", category: "1 Juz (juz 30)" },
+                    { name: "MUHAMMAD RAIHAN NABAWI", parent: "H. MUHTAR SHOFI JAMALUDIN", category: "1 Juz (juz 30)" },
+                    { name: "MUMTAAZ AZKA KHIYARI", parent: "Jaenudin, M.Pd.I", category: "1 Juz (juz 26)" },
+                    { name: "NASYWAN FAIZ RAHMAT", parent: "Agus Rahmat", category: "1 Juz (juz 30)" },
+                    { name: "NAUFAL AFKAR IDLAN", parent: "Iwan Ridwan", category: "1 Juz (juz 29)" },
+                    { name: "NAYLA SRI ANJANI", parent: "Munir", category: "1 Juz (juz 29)" },
+                    { name: "NAYSHILA ALYA FITRI", parent: "Agus Yusuf", category: "1 Juz (juz 30)" },
+                    { name: "NIDAAN KHOFIYYA GUNAWAN", parent: "Sani Gunawan", category: "1 Juz (juz 30)" },
+                    { name: "QYRANNI AZ ZAHRA", parent: "Suyitno", category: "1 Juz (juz 30)" },
+                    { name: "RAI BANI ALFIAN", parent: "Zamzam Timur Alfian", category: "1 Juz (juz 28)" },
+                    { name: "RAISHA NAHLATUL FATIHAH", parent: "Rhaditia Ari Dwi Bahtera", category: "1 Juz (juz 25)" },
+                    { name: "RASIKAH NUR FAUZIYAH", parent: "Engkus Kusnadi", category: "1 Juz (juz 29)" },
+                    { name: "REZA RISTIAWAN", parent: "Ceceng", category: "1 Juz (juz 30)" },
+                    { name: "RIPANDI YUDISTIRA", parent: "iwan", category: "1 Juz (juz 30)" },
+                    { name: "SAGARA CIKAL SUNDANIS", parent: "Pian Jamaludin", category: "1 Juz (juz 27)" },
+                    { name: "SALSABILA KHOIRUNNISA", parent: "Doni Ronald", category: "1 Juz (juz 28)" },
+                    { name: "SALWA FITRI AWALIYAH", parent: "Mulyana", category: "1 Juz (juz 30)" },
+                    { name: "SASKIA BILQIS ZILVANA", parent: "Enang Walimin", category: "1 Juz (juz 29)" },
+                    { name: "SASKIA HANIFATUN NIDA", parent: "Encep Ropik Hidayat", category: "1 Juz (juz 30)" },
+                    { name: "SELLA AVARIELLA RAMADYANI", parent: "Herman", category: "1 Juz (juz 30)" },
+                    { name: "SELLI SHAKILA RAMADYANI", parent: "Herman", category: "1 Juz (juz 30)" },
+                    { name: "SILFIYA AGUS SALIM", parent: "H. Agus Salim", category: "1 Juz (juz 29)" },
+                    { name: "SITI ROBIAH ADAWIAH", parent: "Qodrat", category: "1 Juz (juz 29)" },
+                    { name: "ULFA SOLIHATUN NISSA", parent: "Omang", category: "1 Juz (juz 30)" },
+                    { name: "YUSUF APRIZAL ZAKI", parent: "SUYONO", category: "1 Juz (juz 30)" },
+                    { name: "ZAENAL MUBAROK", parent: "Oma Nurahmat", category: "1 Juz (juz 29)" },
+                    { name: "ZAHWA ADELIA PUTRI", parent: "Sarip Sakoti", category: "1 Juz (juz 30)" },
+                    { name: "ZHAFARA AZALEA KHOIRUNNISA", parent: "SUBAGYO", category: "1 Juz (juz 30)" },
+                    { name: "ZULFA NUR RAHMA MAULIDA", parent: "Ahmad Fauzi Ibrahim", category: "1 Juz (juz 28)" },
+                    { name: "ZULFAN ABDUL FATAH", parent: "Muhamad Sofian", category: "1 Juz (juz 1)" }
+                  ].map((item, index) => (
                     <tr key={index} className="border-b border-gold/10 hover:bg-gold/5 transition-colors">
-                      <td className="py-3 px-4 text-sm font-mono text-gold/70">{index + 1}</td>
-                      <td className="py-3 px-4 text-sm font-medium tracking-wide">{name}</td>
+                      <td className="py-3 px-4 text-[10px] font-mono text-gold/70">{index + 1}</td>
+                      <td className="py-3 px-4 text-[11px] font-medium tracking-wide">{item.name}</td>
+                      <td className="py-3 px-4 text-[11px] text-emerald-100/80">{item.parent}</td>
+                      <td className="py-3 px-4 text-[11px] font-bold text-gold/90">{item.category}</td>
                     </tr>
                   ))}
                 </tbody>
